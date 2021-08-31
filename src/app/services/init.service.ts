@@ -47,7 +47,7 @@ const endpoint = {
   providedIn: 'root',
 })
 export class InitService {
-  private baseUrl = 'assets/configurations';
+  private baseUrl = 'assets/configurations'
   httpOptions = {
     headers: new HttpHeaders({
       wid: 'cc0c1749-4c47-49c8-9f46-2bbdd42ef877',
@@ -503,7 +503,6 @@ export class InitService {
         // this.configSvc.isActive = details.isActive
         return details
       } catch (e) {
-        console.log(e)
         this.configSvc.userProfile = null
         throw new Error('Invalid user')
       }
@@ -520,9 +519,8 @@ export class InitService {
   }
   hasRole(role: string[]): boolean {
     let returnValue = false
-    //const rolesForCBP = 'PUBLIC'
+    // const rolesForCBP = 'PUBLIC'
     const rolesForCBP = environment.portalRoles
-    console.log('>>.', environment)
     role.forEach(v => {
       if ((rolesForCBP).includes(v)) {
         returnValue = true

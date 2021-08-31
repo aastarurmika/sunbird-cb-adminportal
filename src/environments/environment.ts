@@ -4,11 +4,11 @@
 
 export const environment: IEnvironment = {
   production: false,
-  //sitePath: 'aastrika-sb-cbp.idc.tarento.com',
+  // sitePath: 'aastrika-sb-cbp.idc.tarento.com',
   sitePath: (window as { [key: string]: any })['env']['sitePath'] || '',
   karmYogiPath: (window as { [key: string]: any })['env']['karmYogiPath'] || '',
   portalRoles: (((window as { [key: string]: any })['env']['portalRoles'] || '').split(',')) || [],
-  organisation: (window as { [key: string]: any })['env']['organisation'] || ''
+  organisation: (window as { [key: string]: any })['env']['organisation'] || '',
 }
 interface IEnvironment {
   production: boolean
