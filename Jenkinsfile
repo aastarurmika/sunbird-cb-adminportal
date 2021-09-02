@@ -19,34 +19,12 @@ node() {
                    echo $commit_id> commit_id.txt
                    cd $docker_file_path
                    pwd
-                   docker build -f $dockerfile -t $docker_server/$docker_repo:$commit_id .
+                   docker build -t $docker_server/$docker_repo:$commit_id .
                    docker tag $docker_server/$docker_repo:$commit_id $docker_server/$docker_repo:$image_tag
                    echo "docker build is completed !!!! Starting docker push"
                    '''
         }
 
-              stage('SonarQube analysis') {
-               
-             
-   			 // requires SonarQube Scanner 2.8+
-   				 def scannerHome = tool 'sonar_scanner';
-   				 withSonarQubeEnv('sonarqube') {
-    					   sh '''
-                   cd $docker_file_path && pwd && /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar_scanner/bin/sonar-scanner
-                 '''
-    			 }
-  	}
-
-stage("Quality Gate") {
-  
-    timeout(time: 1, unit: 'HOURS') {       // Just in case something goes wrong, pipeline will be killed after a timeout
-  		 def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-   		 if (qg.status != 'OK') {
-    		error "Pipeline aborted due to quality gate failure: ${qg.status}"
-   					}
-  
-  }
-}
  
         stage('docker-push') {
 
