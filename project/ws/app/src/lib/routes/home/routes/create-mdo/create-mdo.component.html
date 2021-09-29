@@ -91,7 +91,7 @@
           <h2 *ngIf="!isAddAdmin" class="cb-title">{{department === 'MDO' ? 'Sphere Org Manager' : 'Sphere Creator
             Providers'}} admin</h2>
           <p *ngIf="!isAddAdmin" class="para-font-color">Admins will be able to add users and assign roles inside the
-            {{department}}. Add minimum
+            {{department === 'MDO' ? 'Sphere Org Manager' : 'Sphere Creator Providers'}}. Add minimum
             one user
             as admin</p>
           <ws-widget-ui-user-table [tableData]="tabledata" [data]="data" [needAddAdmin]="true" [needCreateUser]="true"
