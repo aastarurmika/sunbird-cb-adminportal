@@ -47,7 +47,7 @@ export class DirectoryViewComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.currentFilter = params['department']
       if (this.currentFilter === null || this.currentFilter === undefined) {
-        this.currentFilter = 'MDO'
+        this.currentFilter = 'Sphere Creator Providers'
       }
     })
 

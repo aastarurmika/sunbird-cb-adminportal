@@ -88,7 +88,8 @@
 
       <ng-container class="cb-group-warpper" *ngIf="!submittedForm">
         <mat-card class="checkbox-card">
-          <h2 *ngIf="!isAddAdmin" class="cb-title">{{department}} admin</h2>
+          <h2 *ngIf="!isAddAdmin" class="cb-title">{{department === 'MDO' ? 'Sphere Org Manager' : 'Sphere Creator
+            Providers'}} admin</h2>
           <p *ngIf="!isAddAdmin" class="para-font-color">Admins will be able to add users and assign roles inside the
             {{department}}. Add minimum
             one user

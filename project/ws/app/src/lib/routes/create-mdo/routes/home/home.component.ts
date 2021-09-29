@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.mydept = 'Basic Information'
       }
       if (this.dept.length > 6) {
-        this.dept = 'CBP Providers'
+        this.dept = dept[1].replace(/\%20/gi, ' ').split(';')[0]
       }
       this.role = url[url.length - 2]
     }
