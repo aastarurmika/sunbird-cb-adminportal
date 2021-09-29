@@ -71,12 +71,12 @@ export class CreateMdoComponent implements OnInit {
   { isActive: false, isCompleted: false, name: 'Classification', step: 1 },
   { isActive: false, isCompleded: false, name: 'Intended for', step: 2 }]
   constructor(public dialog: MatDialog,
-              private snackBar: MatSnackBar,
-              private createMdoService: CreateMDOService,
-              private router: Router,
-              private directoryService: DirectoryService,
-              private valueSvc: ValueService,
-              private activatedRoute: ActivatedRoute) {
+    private snackBar: MatSnackBar,
+    private createMdoService: CreateMDOService,
+    private router: Router,
+    private directoryService: DirectoryService,
+    private valueSvc: ValueService,
+    private activatedRoute: ActivatedRoute) {
     {
 
       this.loggedInUserId = _.get(this.activatedRoute, 'snapshot.parent.data.configService.userProfile.userId')
@@ -90,8 +90,10 @@ export class CreateMdoComponent implements OnInit {
       this.activatedRoute.params.subscribe(params => {
         let data = params['data']
         this.department = params['department']
-        if (this.department === 'CBP Providers') {
+        if (this.department === 'Sphere Creator Providers') {
           this.department = 'CBP'
+        } else if (this.department === 'Sphere Org Manager') {
+          this.department = 'MDO'
         }
         this.isFromDirectory = params['isFromDirectory']
         this.isAddAdmin = params['addAdmin']
@@ -187,7 +189,7 @@ export class CreateMdoComponent implements OnInit {
             this.snackBar.open('Admin assigned Successfully')
             this.router.navigate(['/app/home/directory', { department: this.department }])
           }
-        },                                                                                                              (err: { error: any }) => {
+        }, (err: { error: any }) => {
           this.openSnackbar(err.error.errors[0].message)
         })
       })
@@ -243,7 +245,7 @@ export class CreateMdoComponent implements OnInit {
       if (this.contentForm.value.name !== null
         && this.contentForm.value.deptSubTypeId !== null) {
         this.createMdoService.createDepartment(this.contentForm.value, this.deptType,
-                                               this.department, this.loggedInUserId).subscribe(res => {
+          this.department, this.loggedInUserId).subscribe(res => {
             if (res.result.response === 'SUCCESS') {
               this.submittedForm = false
               const obj = {
@@ -257,10 +259,11 @@ export class CreateMdoComponent implements OnInit {
           })
       }
     } else {
+      console.log(this.contentForm.value)
       if (this.contentForm.value.name !== null
         && this.contentForm.value.deptSubTypeId !== null) {
-        this.createMdoService.updateDepartment(this.updateId, this.deptType,
-                                               this.department, this.loggedInUserId).subscribe(res => {
+        this.createMdoService.updateDepartment(this.updateId, this.contentForm.value.deptSubTypeId,
+          this.department, this.loggedInUserId).subscribe(res => {
             if (res.result.response === 'SUCCESS') {
               this.openSnackbar(`Success`)
               this.router.navigate([`/app/home/directory`])

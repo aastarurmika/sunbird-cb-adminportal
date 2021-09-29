@@ -60,10 +60,12 @@ export class DirectoryViewComponent implements OnInit {
   getAllDepartmentsHeaderAPI() {
     this.directoryService.getDepartmentTitles().subscribe(res => {
       const departmentHeaderArray = JSON.parse(res.result.response.value)
-      departmentHeaderArray.orgTypeList.forEach((ele: { name: any, isHidden: any }) => {
+      _.orderBy(departmentHeaderArray.orgTypeList, ['name'], ['desc']).forEach((ele: { name: any, isHidden: any }) => {
         if (!(ele.isHidden)) {
           if (ele.name === 'CBP') {
-            this.departmentHearders.push('CBP Providers')
+            this.departmentHearders.push('Sphere Creator Providers')
+          } else if (ele.name === 'MDO') {
+            this.departmentHearders.push('Sphere Org Manager')
           } else {
             if (ele.name !== 'CBC') {
               this.departmentHearders.push(ele.name)
@@ -107,7 +109,7 @@ export class DirectoryViewComponent implements OnInit {
       this.currentDepartment = key
       const filteredData2: any[] = []
       switch (key) {
-        case 'MDO':
+        case 'Sphere Org Manager':
           this.wholeData2.forEach((element: any) => {
             let department = ''
             if (element.isMdo) {
@@ -125,7 +127,7 @@ export class DirectoryViewComponent implements OnInit {
             }
           })
           break
-        case 'CBP Providers':
+        case 'Sphere Creator Providers':
           this.wholeData2.forEach((element: any) => {
             let department = ''
             if (element.isCbp) {
