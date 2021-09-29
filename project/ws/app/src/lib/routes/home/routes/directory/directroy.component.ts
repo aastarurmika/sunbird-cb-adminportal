@@ -65,7 +65,9 @@ export class DirectoryViewComponent implements OnInit {
           if (ele.name === 'CBP') {
             this.departmentHearders.push('CBP Providers')
           } else {
-            this.departmentHearders.push(ele.name)
+            if (ele.name !== 'CBC') {
+              this.departmentHearders.push(ele.name)
+            }
           }
         }
       })
