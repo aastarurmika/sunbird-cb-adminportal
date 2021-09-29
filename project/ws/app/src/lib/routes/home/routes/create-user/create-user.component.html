@@ -116,8 +116,8 @@
                 </mat-form-field>
  -->
             <mat-selection-list id="role" formControlName="role" #role>
-              <mat-list-option (click)="modifyUserRoles(role)" *ngFor="let role of roles , let i = index"
-                [selected]="role && i == 1" [disabled]="role==='PUBLIC'" [value]="role">
+              <mat-list-option (click)="modifyUserRoles(role)" *ngFor="let role of roles" [selected]="role==='PUBLIC'"
+                [disabled]="role==='PUBLIC'" [value]="role">
                 {{role}}
               </mat-list-option>
             </mat-selection-list>
@@ -175,7 +175,7 @@
         </div>
 
 
-        <div class="flex flex-1">
+        <div class="flex flex-1 margin-top-s">
           <button mat-raised-button type="submit" (click)="onSubmit(createUserForm)" class="text-white btn-success"
             [disabled]="createUserForm?.invalid">
             <span class="text-white" i18n>

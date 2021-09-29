@@ -90,8 +90,10 @@ export class CreateMdoComponent implements OnInit {
       this.activatedRoute.params.subscribe(params => {
         let data = params['data']
         this.department = params['department']
-        if (this.department === 'CBP Providers') {
+        if (this.department === 'Sphere Creator Providers') {
           this.department = 'CBP'
+        } else if (this.department === 'Sphere Org Manager') {
+          this.department = 'MDO'
         }
         this.isFromDirectory = params['isFromDirectory']
         this.isAddAdmin = params['addAdmin']
@@ -259,7 +261,7 @@ export class CreateMdoComponent implements OnInit {
     } else {
       if (this.contentForm.value.name !== null
         && this.contentForm.value.deptSubTypeId !== null) {
-        this.createMdoService.updateDepartment(this.updateId, this.deptType,
+        this.createMdoService.updateDepartment(this.updateId, this.contentForm.value.deptSubTypeId,
                                                this.department, this.loggedInUserId).subscribe(res => {
             if (res.result.response === 'SUCCESS') {
               this.openSnackbar(`Success`)

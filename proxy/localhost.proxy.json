@@ -7,9 +7,6 @@
     "pathRewrite": {
       "/apis": "/apis"
     },
-     "headers": {
-      "Cookie": "connect.sid=s%3AvdJHrfaDp1JLH1I19YTy0GS6KDIfZ9z5.GdxQPq0B4t1yEOiZrI%2BVKijfLpgZqnF3jbJmXMrM3Ec"
-    }
   },
   "/content-api/*": {
     "target": "http://localhost:3004",
