@@ -92,7 +92,7 @@ export class DirectoryViewComponent implements OnInit {
   getAllDepartments() {
     this.directoryService.getAllDepartmentsKong().subscribe(res => {
       this.wholeData2 = res.result.response.content
-      this.getDepartDataByKey('CBC')
+      // this.getDepartDataByKey('CBC')
     })
   }
   onRoleClick(role: any) {
