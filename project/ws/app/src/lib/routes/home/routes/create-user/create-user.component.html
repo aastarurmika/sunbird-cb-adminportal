@@ -116,8 +116,8 @@
                 </mat-form-field>
  -->
             <mat-selection-list id="role" formControlName="role" #role>
-              <mat-list-option *ngFor="let role of roles" (click)="modifyUserRoles(role)"
-                [selected]="userRoles.has(role)" [value]="role">
+              <mat-list-option (click)="modifyUserRoles(role)" *ngFor="let role of roles , let i = index"
+                [selected]="role && i == 1" [disabled]="role==='PUBLIC'" [value]="role">
                 {{role}}
               </mat-list-option>
             </mat-selection-list>

@@ -76,7 +76,7 @@ export class CreateUserComponent implements OnInit {
         lname: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
         role: new FormControl('', [Validators.required, Validators.required]),
-        dept: new FormControl('Karmayogi Bharat', [Validators.required]),
+        dept: new FormControl('Sphere', [Validators.required]),
       })
     }
 

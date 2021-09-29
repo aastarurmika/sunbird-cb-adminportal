@@ -214,9 +214,11 @@ export class CreateMdoComponent implements OnInit {
     this.directoryService.getDepartmentTitles().subscribe(res => {
       const department = JSON.parse(res.result.response.value)
       department.orgTypeList.forEach((types: any) => {
-        if (types.name === this.department) {
-          this.subDepartments = types.subTypeList
-        }
+        // if (types.name === this.department) {
+        //   this.subDepartments = types.subTypeList
+        // }
+        // Commented as CBC is no more required in this.department which was not there in types.name
+        this.subDepartments = types.subTypeList
       })
     })
   }

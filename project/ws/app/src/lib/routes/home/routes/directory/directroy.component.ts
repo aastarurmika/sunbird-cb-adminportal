@@ -65,7 +65,9 @@ export class DirectoryViewComponent implements OnInit {
           if (ele.name === 'CBP') {
             this.departmentHearders.push('CBP Providers')
           } else {
-            this.departmentHearders.push(ele.name)
+            if (ele.name !== 'CBC') {
+              this.departmentHearders.push(ele.name)
+            }
           }
         }
       })
@@ -90,7 +92,7 @@ export class DirectoryViewComponent implements OnInit {
   getAllDepartments() {
     this.directoryService.getAllDepartmentsKong().subscribe(res => {
       this.wholeData2 = res.result.response.content
-      this.getDepartDataByKey('CBC')
+      // this.getDepartDataByKey('CBC')
     })
   }
   onRoleClick(role: any) {
