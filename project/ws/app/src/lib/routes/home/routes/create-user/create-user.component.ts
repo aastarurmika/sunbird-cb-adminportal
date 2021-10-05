@@ -42,8 +42,13 @@ export class CreateUserComponent implements OnInit {
       this.queryParam = params['id']
       this.deptId = params['id']
       this.currentDept = params['currentDept']
-      if (this.currentDept === 'CBP Providers') {
+      // if (this.currentDept === 'CBP Providers') {
+      //   this.currentDept = 'CBP'
+      // }
+      if (this.currentDept === 'Sphere Creator Providers') {
         this.currentDept = 'CBP'
+      } else if (this.currentDept === 'Sphere Org Manager') {
+        this.currentDept = 'MDO'
       }
       const dept = params['createDept']
       if (dept) {
@@ -67,7 +72,7 @@ export class CreateUserComponent implements OnInit {
         fname: new FormControl('', [Validators.required]),
         lname: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        role: new FormControl('', [Validators.required, Validators.required]),
+        role: new FormControl(['PUBLIC']),
         dept: new FormControl(this.createdDepartment.depName, [Validators.required]),
       })
     } else {
@@ -75,7 +80,7 @@ export class CreateUserComponent implements OnInit {
         fname: new FormControl('', [Validators.required]),
         lname: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        role: new FormControl('', [Validators.required, Validators.required]),
+        role: new FormControl(['PUBLIC']),
         dept: new FormControl('Sphere', [Validators.required]),
       })
     }
@@ -189,18 +194,18 @@ export class CreateUserComponent implements OnInit {
           this.deptId = _.get(this.route, 'snapshot.parent.data.configService.unMappedUser.rootOrg.rootOrgId')
         }
         this.createMDOService.assignAdminToDepartment(userdata.userId, this.deptId,
-                                                      this.createUserForm.value.role)
+          this.createUserForm.value.role)
           .subscribe(data => {
 
             this.openSnackbar(`${data.result.response}`)
 
             this.router.navigate(['/app/home/users'])
-          },         err => {
+          }, err => {
             this.router.navigate([`/app/home/users`])
             this.openSnackbar(`Error in assign roles ${err}`)
           })
       }
-    },                                          err => {
+    }, err => {
       this.openSnackbar(`User Creation ${err}`)
 
     })
