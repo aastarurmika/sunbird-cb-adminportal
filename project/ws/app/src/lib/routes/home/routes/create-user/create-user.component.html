@@ -64,7 +64,7 @@
                 *ngIf="createUserForm?.controls['email']?.touched && createUserForm?.controls['email'].errors?.required">
                 Email is mandatory
               </mat-error>
-              <mat-error [hidden]="false" *ngIf="createUserForm?.controls['email'].errors?.invalid" i18n-aria-label
+              <mat-error [hidden]="false" *ngIf="createUserForm?.controls['email'].errors?.email" i18n-aria-label
                 aria-label="Email Error|Name fields not valid ">
                 Email field is not valid
               </mat-error>
@@ -75,7 +75,7 @@
             </label>
             <mat-form-field appearance="outline" class="margin-top-xs">
               <input id="dept" matInput #dept formControlName="dept" i18n-placeholder placeholder="Type here"
-                i18n-aria-label aria-label="Department" class="form-input" autocomplete="off" />
+                i18n-aria-label aria-label="Department" class="form-input" autocomplete="off" readonly />
             </mat-form-field>
             <!-- <label for="deptType" class="margin-remove-bottom margin-top-xs form-label required"
               i18n="Email label|Label which explains the user to enter email" i18n-aria-label aria-label="Email label">
